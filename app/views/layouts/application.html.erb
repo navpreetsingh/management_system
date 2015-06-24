@@ -10,17 +10,17 @@
 <body>
   <div class="container-fluid">
     <div class="row header">
-      <div class="col-sm-3 logo">
-        
+      <div class="col-sm-3 ">
+        <%= link_to "Dummy Database", welcome_dummy_database_path, class: "btn btn-link" %>
       </div>
       <div class="col-sm-9">
         <div class="row">
           <div class="col-sm-12">
-            <div class="pull-right">
-              <% if current_user && (current_user.role? :admin) %>
+            <div class="pull-right">              
+              <% if current_user && (current_user.role? :admin) %>                
                 <%= link_to "Admin Panel", rails_admin_path, class: "btn btn-link" %>
               <% end %>
-              <% if current_user && (current_user.role? :manager) %>
+              <% if current_user && (current_user.role? :manager) %>              
                 <%= link_to "View Leave Requests", rails_admin_path, class: "btn btn-link" %>
               <% end %>
               <% if user_signed_in? %>

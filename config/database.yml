@@ -5,9 +5,13 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false  
   pool: 5
-  timeout: 5000
+  username: postgres
+  password: click227
+  host: localhost
 
 # development:
 #   adapter: mysql2
@@ -19,33 +23,29 @@ default: &default
 #   password: root
 #   database: tms_development
 
-development:  
-  adapter: mysql2
-  host: localhost
-  port: 3306
-  timeout: 5000
-  pool: 25
-  username: root
-  password: root
-  database: tms_development
+development:
+  <<: *default
+  database: clickapps
 
-attendance:
-  adapter: mysql2
-  host: 192.168.0.50
-  port: 17770
-  timeout: 5000
-  pool: 25
-  username: root
-  password: 
-  database: zkeco_db
+test:
+  <<: *default
+  database: clickapps_test
+
+
+# attendance:
+#   adapter: mysql2
+#   host: 192.168.0.50
+#   port: 17770
+#   timeout: 5000
+#   pool: 25
+#   username: root
+#   password: 
+#   database: zkeco_db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: db/test.sqlite3
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: clickapps_production

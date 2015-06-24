@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'welcome/dummy_database'
+
   namespace :admin do
     resources :reports do
       collection do
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
     resources :users do
         collection do
           match 'import', :via => [:get, :post]
-          match 'export', :via => [:get, :post]
+          match 'export', :via => [:get, :post]          
         end
       end
     
@@ -38,7 +40,7 @@ Rails.application.routes.draw do
   post '/users/:id/request_comp_off', to: 'users#request_comp_off', as: "users_request_comp_off"
   get '/users/:id/comp_offs', to: 'users#comp_offs', as: "users_comp_offs"
   get '/users/:id/leaves/:leave_id', to: 'users#cancel_leaves_partial', as: "users_cancel_leaves_partial"
-  delete '/users/:id/leaves/:leave_info_id', to: 'users#cancel_leaves', as: "users_cancel_leaves"
+  delete '/users/:id/leaves/:leave_info_id', to: 'users#cancel_leaves', as: "users_cancel_leaves"  
   get '/managers/:manager_id', to: 'managers#show', as: "managers_show"
   put '/managers/:manager_id/leave_approval/:leave_id', to: 'managers#leave_approval', as: "managers_leave_approval"
   put '/managers/:manager_id/compoff_approval/:compoff_id', to: 'managers#compoff_approval', as: "managers_compoff_approval"

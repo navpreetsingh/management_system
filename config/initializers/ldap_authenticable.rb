@@ -11,20 +11,20 @@ module Devise
           elsif password.blank?
             fail(:password_required)
           else
-            ldap = Net::LDAP.new(auth: {method: :simple, username: ldap_username, password: password})
-            ldap.host = LDAPConfig[Rails.env]["host"]
-            ldap.port = LDAPConfig[Rails.env]["port"]
-            ldap.base = LDAPConfig[Rails.env]["base"]
-            if ldap.bind
+            # ldap = Net::LDAP.new(auth: {method: :simple, username: ldap_username, password: password})
+            # ldap.host = LDAPConfig[Rails.env]["host"]
+            # ldap.port = LDAPConfig[Rails.env]["port"]
+            # ldap.base = LDAPConfig[Rails.env]["base"]
+            # if ldap.bind
               user = User.find_by_username(username)
               if user
                 success!(user)
               else
                 fail(:inactive)
               end
-            else
-              fail(:invalid)
-            end
+            # else
+            #   fail(:invalid)
+            # end
           end
         end
       end
